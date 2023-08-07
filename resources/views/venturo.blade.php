@@ -40,9 +40,22 @@ if(isset($_GET['tahun'])){
                         <div class="col-2">
                             <div class="form-group">
                                 <select id="my-select" class="form-control" name="tahun">
-                                    <option value="">Pilih Tahun</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
+                                    @php
+                                        $selectedYear = $tahun ?? null; // Menggunakan $tahun jika sudah ada, atau null jika belum ada
+                                    @endphp
+                                    @if($selectedYear == '2021')
+                                        <option value="">Pilih Tahun</option>
+                                        <option value="2021" selected>2021</option>
+                                        <option value="2022">2022</option>>2022</option>
+                                    @elseif($selectedYear == '2022')
+                                        <option value="">Pilih Tahun</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022" selected>2022</option>
+                                    @else
+                                        <option value="" selected>Pilih Tahun</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -94,16 +107,159 @@ if(isset($_GET['tahun'])){
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="table-secondary" colspan="14"><b>Makanan</b></td>
+                                    <td class="table-secondary"><b>Makanan</b></td>
+                                    <?php  $totalTransaksiMakananJanuari = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '01') 
+                                                        <?php $totalTransaksiMakananJanuari += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananJanuari }}</b></td>
+                                    <?php $totalTransaksiMakananFebruari = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '02') 
+                                                        <?php $totalTransaksiMakananFebruari += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananFebruari }}</b></td>
+                                    <?php $totalTransaksiMakananMaret = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '03') 
+                                                        <?php $totalTransaksiMakananMaret += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananMaret }}</b></td>
+                                    <?php $totalTransaksiMakananApril = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '04') 
+                                                        <?php $totalTransaksiMakananApril += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananApril }}</b></td>
+                                    <?php $totalTransaksiMakananMei = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '05') 
+                                                        <?php $totalTransaksiMakananMei += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananMei }}</b></td>
+                                    <?php $totalTransaksiMakananJuni = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '06') 
+                                                        <?php $totalTransaksiMakananJuni += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananJuni }}</b></td>
+                                    <?php $totalTransaksiMakananJuli = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '07') 
+                                                        <?php $totalTransaksiMakananJuli += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananJuli }}</b></td>
+                                    <?php $totalTransaksiMakananAgustus = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '08') 
+                                                        <?php $totalTransaksiMakananAgustus += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananAgustus }}</b></td>
+                                    <?php $totalTransaksiMakananSeptember = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '09') 
+                                                        <?php $totalTransaksiMakananSeptember += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananSeptember }}</b></td>
+                                    <?php $totalTransaksiMakananOktober = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '10') 
+                                                        <?php $totalTransaksiMakananOktober += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananOktober }}</b></td>
+                                    <?php $totalTransaksiMakananNovember = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '11') 
+                                                        <?php $totalTransaksiMakananNovember += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananNovember }}</b></td>
+                                    <?php $totalTransaksiMakananDesember= 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '12') 
+                                                        <?php $totalTransaksiMakananDesember += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakananDesember }}</b></td>
+                                    <?php $totalTransaksiTry = 0; $totalTransaksiMakanan = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @if(date('m', strtotime($transaksiData->tanggal)) == '01')
+                                                <?php $totalTransaksiTry += $transaksiData->total; ?>
+                                            @endif
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'makanan') 
+                                                    @if ($item->menu == $transaksiData->menu) 
+                                                        <?php $totalTransaksiMakanan += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMakanan }}</b></td>
                                 </tr>
                                 <tr>
                                     @foreach($menu as $item)
                                         @if($item->kategori=='makanan')
                                         <tr>
                                             <td>{{ $item->menu }}</td>
-                                            <!-- @foreach($transaksi as $transaksiData)
-                                                <td>{{$transaksiData->total}}</td>
-                                            @endforeach -->
                                             <?php $totalTransaksiMenu = 0; ?>
                                             @foreach($transaksi as $transaksiData)
                                                 @if($transaksiData->menu == $item->menu && date('m', strtotime($transaksiData->tanggal)) == '01')
@@ -194,7 +350,153 @@ if(isset($_GET['tahun'])){
 
                                 </tr>
                                 <tr>
-                                    <td class="table-secondary" colspan="14"><b>Minuman</b></td>
+                                    <td class="table-secondary"><b>Minuman</b></td>
+                                    <?php  $totalTransaksiMinumanJanuari = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '01') 
+                                                        <?php $totalTransaksiMinumanJanuari += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanJanuari }}</b></td>
+                                    <?php $totalTransaksiMinumanFebruari = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '02') 
+                                                        <?php $totalTransaksiMinumanFebruari += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanFebruari }}</b></td>
+                                    <?php $totalTransaksiMinumanMaret = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '03') 
+                                                        <?php $totalTransaksiMinumanMaret += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanMaret }}</b></td>
+                                    <?php $totalTransaksiMinumanApril = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '04') 
+                                                        <?php $totalTransaksiMinumanApril += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanApril }}</b></td>
+                                    <?php $totalTransaksiMinumanMei = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '05') 
+                                                        <?php $totalTransaksiMinumanMei += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanMei }}</b></td>
+                                    <?php $totalTransaksiMinumanJuni = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '06') 
+                                                        <?php $totalTransaksiMinumanJuni += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanJuni }}</b></td>
+                                    <?php $totalTransaksiMinumanJuli = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '07') 
+                                                        <?php $totalTransaksiMinumanJuli += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanJuli }}</b></td>
+                                    <?php $totalTransaksiMinumanAgustus = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '08') 
+                                                        <?php $totalTransaksiMinumanAgustus += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanAgustus }}</b></td>
+                                    <?php $totalTransaksiMinumanSeptember = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '09') 
+                                                        <?php $totalTransaksiMinumanSeptember += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanSeptember }}</b></td>
+                                    <?php $totalTransaksiMinumanOktober = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '10') 
+                                                        <?php $totalTransaksiMinumanOktober += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanOktober }}</b></td>
+                                    <?php $totalTransaksiMinumanNovember = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '11') 
+                                                        <?php $totalTransaksiMinumanNovember += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanNovember }}</b></td>
+                                    <?php $totalTransaksiMinumanDesember= 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu && date('m', strtotime($transaksiData->tanggal)) == '12') 
+                                                        <?php $totalTransaksiMinumanDesember += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinumanDesember }}</b></td>
+                                    <?php $totalTransaksiTry = 0; $totalTransaksiMinuman = 0;?>
+                                    @foreach($transaksi as $transaksiData)
+                                            @if(date('m', strtotime($transaksiData->tanggal)) == '01')
+                                                <?php $totalTransaksiTry += $transaksiData->total; ?>
+                                            @endif
+                                            @foreach ($menu as $item)
+                                                @if ($item->kategori == 'minuman') 
+                                                    @if ($item->menu == $transaksiData->menu) 
+                                                        <?php $totalTransaksiMinuman += $transaksiData->total;?>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                    <td class="table-secondary"><b>{{ $totalTransaksiMinuman }}</b></td>
                                 </tr>
                                 <tr>
                                     @foreach($menu as $item)
@@ -290,82 +592,93 @@ if(isset($_GET['tahun'])){
                                 </tr>
                                 <tr class="table-dark">
                                     <td><b>Total</b></td>
-                                    <?php $totalTransaksiMenuBulan = 0; ?>
+                                    <?php $totalTransaksiMenuBulanJanuari = 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '01')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanJanuari += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanJanuari}}</td>
+                                    <?php $totalTransaksiMenuBulanFebruari= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '02')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanFebruari += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanFebruari}}</td>
+                                    <?php $totalTransaksiMenuBulanMaret= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '03')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanMaret += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanMaret}}</td>
+                                    <?php $totalTransaksiMenuBulanApril= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '04')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanApril += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanApril}}</td>
+                                    <?php $totalTransaksiMenuBulanMei= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '05')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanMei += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanMei}}</td>
+                                    <?php $totalTransaksiMenuBulanJuni= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '06')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanJuni += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanJuni}}</td>
+                                    <?php $totalTransaksiMenuBulanJuli= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '07')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanJuli += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanJuli}}</td>
+                                    <?php $totalTransaksiMenuBulanAgustus= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '08')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanAgustus += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenu}}</td>
+                                    <td>{{$totalTransaksiMenuBulanAgustus}}</td>
+                                    <?php $totalTransaksiMenuBulanSeptember= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '09')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanSeptember += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanSeptember}}</td>
+                                    <?php $totalTransaksiMenuBulanOktober= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '10')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanOktober += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanOktober}}</td>
+                                    <?php $totalTransaksiMenuBulanNovember= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '11')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanNovember += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanNovember}}</td>
+                                    <?php $totalTransaksiMenuBulanDesember= 0; ?>
                                     @foreach($transaksi as $transaksiData)
                                         @if(date('m', strtotime($transaksiData->tanggal)) == '12')
-                                            <?php $totalTransaksiMenuBulan += $transaksiData->total; ?>
+                                            <?php $totalTransaksiMenuBulanDesember += $transaksiData->total; ?>
                                         @endif
                                     @endforeach
-                                    <td>{{$totalTransaksiMenuBulan}}</td>
+                                    <td>{{$totalTransaksiMenuBulanDesember}}</td>
                                     
                                     <?php $totalTransaksiMenuALL = 0; ?>
-                                    <?php $totalTransaksiMenuALL += $totalTransaksiMenuBulan; ?>
+                                    <?php $totalTransaksiMenuALL = $totalTransaksiMenuBulanJanuari+$totalTransaksiMenuBulanFebruari+$totalTransaksiMenuBulanMaret+$totalTransaksiMenuBulanApril+$totalTransaksiMenuBulanMei+$totalTransaksiMenuBulanJuni+$totalTransaksiMenuBulanJuli+$totalTransaksiMenuBulanAgustus+$totalTransaksiMenuBulanSeptember+$totalTransaksiMenuBulanOktober+$totalTransaksiMenuBulanNovember+$totalTransaksiMenuBulanDesember; ?>
                                     <td>{{$totalTransaksiMenuALL}}</td>
                                 </tr>
                             </tbody>
@@ -387,6 +700,7 @@ if(isset($_GET['tahun'])){
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
     </body>
 </html>
